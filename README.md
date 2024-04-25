@@ -51,8 +51,14 @@ Precision, flops and infer time are all evaluated on **VGA resolution**.
 ## Installation
 
 Please refer to [mmdetection](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/get_started.md#installation) for installation.
- 
+  0. Install PyTorch (tested with torch 1.8)
+       ```
+       pip install torch==1.8.0+cpu torchvision==0.9.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+       ```
   1. Install [mmcv](https://github.com/open-mmlab/mmcv). (mmcv-full==1.2.6 and 1.3.3 was tested)
+       ```
+       pip install mmcv==1.3.3 -f https://download.openmmlab.com/mmcv/dist/cpu/torch1.8/index.html
+       ```
   2. Install build requirements and then install mmdet.
        ```
        pip install -r requirements/build.txt
@@ -135,6 +141,11 @@ mAP, FLOPs and inference latency are all evaluated on VGA resolution.
 ## Convert to ONNX
 
 Please refer to `tools/scrfd2onnx.py`
+
+Install packages
+    ```
+    pip install onnx==1.10.0 scipy==1.5.4 onnx-simplifier=0.4.10
+    ```
 
 Generated onnx model can accept dynamic input as default.
 
