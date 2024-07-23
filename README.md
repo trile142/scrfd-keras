@@ -51,13 +51,14 @@ Precision, flops and infer time are all evaluated on **VGA resolution**.
 ## Installation
 
 Please refer to [mmdetection](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/get_started.md#installation) for installation.
-  0. Install PyTorch (tested with torch 1.8)
+
+  0. Install PyTorch (tested with torch 1.8)       
        ```
        pip install torch==1.8.0+cpu torchvision==0.9.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
        ```
   1. Install [mmcv](https://github.com/open-mmlab/mmcv). (mmcv-full==1.2.6 and 1.3.3 was tested)
        ```
-       pip install mmcv==1.3.3 -f https://download.openmmlab.com/mmcv/dist/cpu/torch1.8/index.html
+       pip install mmcv==1.3.3 opencv-python==4.3.0.38 -f https://download.openmmlab.com/mmcv/dist/cpu/torch1.8/index.html
        ```
   2. Install build requirements and then install mmdet.
        ```
@@ -70,7 +71,6 @@ Please refer to [mmdetection](https://github.com/open-mmlab/mmdetection/blob/mas
 ### WIDERFace:
   1. Download WIDERFace datasets and put it under `data/retinaface`.
   2. Download annotation files from [gdrive](https://drive.google.com/file/d/1UW3KoApOhusyqSHX96yEDRYiNkd3Iv3Z/view?usp=sharing) and put them under `data/retinaface/`
- 
    ```
      data/retinaface/
          train/
@@ -143,18 +143,32 @@ mAP, FLOPs and inference latency are all evaluated on VGA resolution.
 Please refer to `tools/scrfd2onnx.py`
 
 Install packages
-    ```
-    pip install onnx==1.10.0 scipy==1.5.4 onnx-simplifier=0.4.10
-    ```
+```
+pip install onnx==1.10.0 scipy==1.5.4 onnx-simplifier=0.4.10
+```
 
 Generated onnx model can accept dynamic input as default.
 
 You can also set specific input shape by pass ``--shape 640 640``, then output onnx model can be optimized by onnx-simplifier.
 
+## Convert to Keras/TFLite
+
+Please refer to `mmdet_keras/export.py`
+
+Tested with all pretrained models above.
+
+Install packages
+```
+pip install tensorflow-cpu==2.6.0 keras==2.6.0 tensorflow-addons==0.14.0
+```
 
 ## Inference
 
 Please refer to `tools/scrfd.py` which uses onnxruntime to do inference.
+
+Please refer to `mmdet_keras/scrfd.py` which uses tensorflow to do inference.
+
+Please refer to `mmdet_keras/scrfd_tflite.py` which uses tensorflow lite to do inference.
 
 ## Network Search
 
